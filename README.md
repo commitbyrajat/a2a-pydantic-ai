@@ -237,13 +237,13 @@ It ensures that agents can treat other agents as intelligent, modular services, 
 
 ## What is `fastmcp2`?
 
-`fastmcp` (Machine-Callable Protocol) is a framework for:
+`fastmcp2` is a modern implementation of the Model Context Protocol (MCP), a design pattern that standardizes how AI models (especially LLM agents) interact with callable, structured tools. It provides a robust framework for building, serving, and composing LLM-friendly tools that are:
 
-* Creating typed, documented, and reusable LLM tools.
-* Hosting those tools as callable HTTP endpoints.
-* Composing tools into agents with minimal configuration.
+* **Typed**: Each tool has clear input and output types using Python’s type hints.
 
-FastMCP encourages a clean separation of tools and logic, which makes system integration safer and more modular.
+* **Documented**: Tools are self-describing, making them easy for agents to discover and understand.
+
+* **Reusable**: Once defined, tools can be reused by any agent that supports the MCP interface.
 
 ---
 
