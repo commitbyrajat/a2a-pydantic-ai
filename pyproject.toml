@@ -1,0 +1,39 @@
+[project]
+name = "a2a-pydantic-ai"
+version = "0.1.0"
+description = "Add your description here"
+authors = [
+    { name = "rajatnigam", email = "rajatnigam89@gmail.com" }
+]
+dependencies = [
+    "pydantic-ai>=0.4.7",
+    "fasta2a>=0.5.0",
+    "fastmcp>=2.10.6",
+    "black>=25.1.0",
+    "isort>=6.0.1",
+]
+readme = "README.md"
+requires-python = ">= 3.8"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = []
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/a2a_pydantic_ai"]
+
+[tool.rye.scripts]
+restaurant-agent = "uvicorn src.a2a_pydantic_ai.a2a_server.restaurant_agent:app --host 0.0.0.0 --port 8000"
+restaurant-mcp-tools = "fastmcp run src/a2a_pydantic_ai/mcp/restaurant_tools.py -t http -p 8001"
+helpdesk-agent = "uvicorn src.a2a_pydantic_ai.a2a_server.helpdesk_agent:app --host 0.0.0.0 --port 8003"
+helpdesk-mcp-tools = "fastmcp run src/a2a_pydantic_ai/mcp/helpdesk_tools.py -t http -p 8002"
+
+
+
