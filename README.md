@@ -195,20 +195,30 @@ Here’s how the components interact when a user makes a restaurant-related quer
 
 ```mermaid
 sequenceDiagram
-    participant User
-    participant HelpdeskAgent (8003)
-    participant HelpdeskMCP (8002)
-    participant RestaurantAgent (8000)
-    participant RestaurantMCP (8001)
+    autonumber
 
-    User->>HelpdeskAgent: "What is on the menu?"
-    HelpdeskAgent->>HelpdeskMCP: Calls `query_restaurant_agent`
-    HelpdeskMCP->>RestaurantAgent: Sends A2A message
-    RestaurantAgent->>RestaurantMCP: Uses `get_complete_menu`
-    RestaurantMCP-->>RestaurantAgent: Returns menu
-    RestaurantAgent-->>HelpdeskMCP: Sends A2A response
-    HelpdeskMCP-->>HelpdeskAgent: Returns restaurant result
-    HelpdeskAgent-->>User: Full menu details
+    participant User
+    participant HelpdeskAgent as Helpdesk Agent (Port 8003)
+    participant HelpdeskMCP as Helpdesk MCP Tools (Port 8002)
+    participant A2AClient as A2AClient (fasta2a)
+    participant RestaurantAgent as Restaurant Agent (Port 8000)
+    participant RestaurantMCP as Restaurant MCP Tools (Port 8001)
+
+    User->>HelpdeskAgent: Asks "What are the dessert options?"
+
+    HelpdeskAgent->>HelpdeskMCP: Calls `query_restaurant_agent(query)`
+
+    HelpdeskMCP->>A2AClient: Builds Message using fasta2a.Message
+    A2AClient->>RestaurantAgent: Sends structured A2A request
+
+    RestaurantAgent->>RestaurantMCP: Uses MCP to call `get_complete_menu()`
+    RestaurantMCP-->>RestaurantAgent: Returns full menu (including desserts)
+
+    RestaurantAgent-->>A2AClient: Sends final response with task artifacts
+    A2AClient-->>HelpdeskMCP: Polls and retrieves completed task
+
+    HelpdeskMCP-->>HelpdeskAgent: Returns the dessert details
+    HelpdeskAgent-->>User: "Our desserts include Chocolate Lava Cake with vanilla ice cream."
 ```
 
 ---
