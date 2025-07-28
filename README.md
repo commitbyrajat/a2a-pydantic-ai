@@ -4,7 +4,7 @@ In the rapidly evolving world of AI agents, building systems that can **collabor
 
 We’ll explore how these tools work together to enable an LLM-driven helpdesk to delegate restaurant-related queries to a separate, specialized agent—without breaking the user experience.
 
-GitHub repo: [github.com/rajatnigam/a2a-pydantic-ai](https://github.com/rajatnigam/a2a-pydantic-ai)
+GitHub repo: [github.com/commitbyrajat/a2a-pydantic-ai](https://github.com/commitbyrajat/a2a-pydantic-ai)
 
 ---
 
@@ -23,7 +23,7 @@ Each component is loosely coupled and communicates over HTTP using structured me
 
 ## Project Bootstrapping
 
-You’ll need Python 3.8+ and [Rye](https://rye-up.com/) for managing dependencies. Once cloned, follow these steps to bring the system up:
+You’ll need Python 3.8+ and [Rye](https://rye.astral.sh/) for managing dependencies. Once cloned, follow these steps to bring the system up:
 
 ```bash
 # Step 1: Start the restaurant MCP tool server
@@ -258,6 +258,6 @@ This system demonstrates the power of **multi-agent architectures**. By combinin
 This pattern scales. Tomorrow you could plug in a billing agent, a concierge bot, or a travel assistant. Each would be self-contained, reusable, and accessible via A2A.
 
 Explore the full code here:
-[github.com/rajatnigam/a2a-pydantic-ai](https://github.com/rajatnigam/a2a-pydantic-ai)
+[github.com/commitbyrajat/a2a-pydantic-ai](https://github.com/commitbyrajat/a2a-pydantic-ai)
 
 ---
